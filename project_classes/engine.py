@@ -38,3 +38,20 @@ class HH(Engine):
 
         except requests.RequestException: # Ошибка получения данных
             print('Не удается получить данные')
+
+    def vacancy_info(self, data):
+        """Метод, позволяющий получать данные о вакансии в требуемом виде"""
+
+        info = {
+            'Сайт': 'HeadHunter',
+            'Имя профессии': data['name'],
+            'Url вакансии': data['alternate_url'],
+            'Требования': data('snippet'),
+            'Умения': data('responsibility'),
+            'Зарплата': data('salary'),
+            'Дата публикации': data['published_at'],
+            'Место работы': data['area']['name']
+        }
+        return info
+
+
