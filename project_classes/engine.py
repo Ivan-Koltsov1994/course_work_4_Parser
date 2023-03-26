@@ -8,3 +8,9 @@ class Engine(ABC):
         """Метод для запроса вакансий через API сайта"""
         pass
 
+    @staticmethod
+    def get_connector(file_name: str):
+        """ Возвращает экземпляр класса Connector """
+        pass
+
+class
