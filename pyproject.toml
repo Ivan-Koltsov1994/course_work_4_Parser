@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "course-work-4-parser"
+version = "0.1.0"
+description = ""
+authors = ["Ivan <ivan.koltsov.1994@mail.com>"]
+readme = "README.md"
+packages = [{include = "course_work_4_parser"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.28.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
