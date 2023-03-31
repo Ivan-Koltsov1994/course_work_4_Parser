@@ -29,6 +29,12 @@ class HH(Engine):
         self.par = {'text': f'{job}', 'page': 0, f'per_page': {number_of_pages}}  # Инициализируем данные по
         # названию профессии, id региона в HH, выводим количество страниц
 
+    def __str__(self):
+        return f'{self.job}'
+
+    def __repr__(self):
+        return f'Данные о вакансии: {self.job}'
+
     @staticmethod
     def get_formatted_date(date: str) -> str:
         """Возвращает отформатированную дату"""
@@ -95,15 +101,22 @@ class SuperJob(Engine):
 
     URL = 'https://api.superjob.ru/2.0/vacancies/'  # Базовый URL для скачивания данных о вакансии c SJ
 
-    def __init__(self, search: str):
+    def __init__(self, job: str):
         """Инициализируется запросом пользователя"""
-        self.par = {'keywords': f'{search}', 'count': 100, 'page': 1}
+        self.job = None
+        self.par = {'keywords': f'{job}', 'count': 100, 'page': 1}
         self.HEADERS = {
             'Host': 'api.superjob.ru',
             'X-Api-App-Id': os.getenv('SJ_API_KEY'),  # Токен SJ, встроенный в переменные окружения
             'Authorization': 'Bearer r.000000010000001.example.access_token',
             'Content-Type': 'application/x-www-form-urlencoded'
         }  # Делаем запрос к API SJ
+
+    def __str__(self):
+        return f'{self.job}'
+
+    def __repr__(self):
+        return f'Данные о вакансии: {self.job}'
 
     @staticmethod
     def get_formatted_date(date: int) -> str:
