@@ -1,3 +1,4 @@
+# Добавляем требуемые импорты
 from abc import ABC, abstractmethod
 from datetime import datetime
 
@@ -24,9 +25,10 @@ class HH(Engine):
 
     URL = 'https://api.hh.ru/vacancies'  # Базовый URL для скачивания данных о вакансии
 
-    def __init__(self, job: str, number_of_pages=1000):
+    def __init__(self, job: str):
         """Инициализируется запросом пользователя"""
-        self.par = {'text': f'{job}', 'page': 0, f'per_page': {number_of_pages}}  # Инициализируем данные по
+        self.job = job
+        self.par = {'text': f'{self.job}', 'page': 0, 'per_page': 100}  # Инициализируем данные по
         # названию профессии, id региона в HH, выводим количество страниц
 
     def __str__(self):
@@ -36,7 +38,7 @@ class HH(Engine):
         return f'Данные о вакансии: {self.job}'
 
     @staticmethod
-    def get_formatted_date(date: str) -> str:
+    def get_formatted_date_hh(date: str) -> str:
         """Возвращает отформатированную дату"""
         date_format = datetime.strptime(date, "%Y-%m-%dT%H:%M:%S+%f").strftime("%d.%m.%Y %X")
         return date_format
@@ -64,7 +66,7 @@ class HH(Engine):
             'Url вакансии': data['alternate_url'],
             'Требования': data.get('snippet').get('responsibility'),
             'Зарплата': data['salary'],
-            'Дата публикации': self.get_formatted_date(data['published_at']),
+            'Дата публикации': self.get_formatted_date_hh(data['published_at']),
             'Место работы': data['area']['name']
         }
         return info
@@ -77,7 +79,7 @@ class HH(Engine):
 
         while True:
             self.par['page'] = page
-            data = self.get_request()
+            data = self.get_request()[0]
 
             for vacancy in data.get('items'):
 
@@ -103,7 +105,7 @@ class SuperJob(Engine):
 
     def __init__(self, job: str):
         """Инициализируется запросом пользователя"""
-        self.job = None
+        self.job = job
         self.par = {'keywords': f'{job}', 'count': 100, 'page': 1}
         self.HEADERS = {
             'Host': 'api.superjob.ru',
@@ -119,7 +121,7 @@ class SuperJob(Engine):
         return f'Данные о вакансии: {self.job}'
 
     @staticmethod
-    def get_formatted_date(date: int) -> str:
+    def get_formatted_date_sj(date: int) -> str:
         """Возвращает отформатированную дату"""
         date_format = datetime.fromtimestamp(int(date)).strftime("%d.%m.%Y %X")
         return date_format
@@ -150,14 +152,14 @@ class SuperJob(Engine):
             'Url вакансии': data['link'],
             'Требования': data.get('client').get('description'),
             'Зарплата': salary,
-            'Дата публикации': self.get_formatted_date(str(data['date_published'])),
+            'Дата публикации': self.get_formatted_date_sj(str(data['date_published'])),
             'Место работы': data['town']['title']
         }
         return info
 
-    def get_vacancies(self):
+    def get_vacancies_list(self):
         """Записывает информацию о вакансии в список при наличии сведений о ЗП в рублях"""
-        vacancy_list_rus = [] # Массив с вакансиями c ЗП в рублях
+        vacancy_list_rus = []  # Массив с вакансиями c ЗП в рублях
 
         for i in range(100):
             self.par['page'] = i
@@ -165,11 +167,18 @@ class SuperJob(Engine):
 
             for vacancy in data.get('objects'):
                 if vacancy.get('currency') is not None:
-                    if vacancy.get('currency') == "rub" or vacancy.get('currency') == None:
+                    if vacancy.get('currency') == "rub" or vacancy.get('currency') is None:
                         vacancy_list_rus.append(self.vacancy_info(vacancy))
                     else:
                         continue
-            if len(vacancy_list_rus) >= 500:# Прекращаем поиск при превышении длины списков в 500 позиций
+            if len(vacancy_list_rus) >= 500:  # Прекращаем поиск при превышении длины списков в 500 позиций
                 break
 
         return vacancy_list_rus
+
+
+#hh = HH('Python')
+#print(hh.get_vacancies_list())
+
+# sj = SuperJob('Python')
+# print(sj.get_vacancies_list())
