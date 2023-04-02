@@ -177,10 +177,10 @@ class SuperJob(Engine):
         return vacancy_list_rus
 
 
-hh = HH('Python')
+#hh = HH('Python')
 #data,info = hh.get_request()
 #exit(info)
-print(hh.get_vacancies_list()[0])
+#print(hh.get_vacancies_list()[0])
 
-sj = SuperJob('Python')
-print(sj.get_vacancies_list()[0])
+#sj = SuperJob('Python')
+#print(sj.get_vacancies_list()[0])
