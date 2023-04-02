@@ -1,7 +1,7 @@
 # Добавляем требуемые импорты
 from abc import ABC, abstractmethod
 from datetime import datetime
-
+from project_classes.connector import Connector
 import requests
 import os
 
@@ -15,9 +15,9 @@ class Engine(ABC):
         pass
 
     @staticmethod
-    def get_connector(file_name: str):
+    def get_connector(file_name)->Connector:
         """ Возвращает экземпляр класса Connector """
-        pass
+        return Connector(file_name)
 
 
 class HH(Engine):
@@ -178,6 +178,8 @@ class SuperJob(Engine):
 
 
 #hh = HH('Python')
+#data,info = hh.get_request()
+#exit(info)
 #print(hh.get_vacancies_list())
 
 # sj = SuperJob('Python')
