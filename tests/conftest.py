@@ -52,3 +52,18 @@ def vacancies():
     with open(path) as file:
         data = json.load(file)
     return data
+
+@pytest.fixture
+def vacancies_hh():
+    path = os.path.join('test_data/vacancies_list_hh.json')
+    with open(path,'r', encoding='UTF-8') as file:
+        data = json.load(file)
+    return data
+
+
+@pytest.fixture
+def vacancies_sj():
+    path = os.path.join('test_data/vacancies_list_sj.json')
+    with open(path,'r', encoding='UTF-8') as file:
+        data = json.load(file)
+    return data

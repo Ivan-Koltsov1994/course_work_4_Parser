@@ -57,3 +57,5 @@ class SJVacancy(Vacancy):
 
     def __repr__(self):
         return f'{self.website}: {self.name}, зарплата: {self.get_salary()}'
+
+
