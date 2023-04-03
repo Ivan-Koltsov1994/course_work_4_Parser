@@ -61,13 +61,13 @@ class HH(Engine):
         """Метод, позволяющий получать данные о вакансии в требуемом виде (для ЗП в Рублях)"""
 
         info = {
-            'Сайт': 'HeadHunter',
-            'Название профессии': data['name'],
-            'Url вакансии': data['alternate_url'],
-            'Требования': data.get('snippet').get('responsibility'),
-            'Зарплата': data['salary'],
-            'Дата публикации': self.get_formatted_date_hh(data['published_at']),
-            'Место работы': data['area']['name']
+            'source': 'HeadHunter',
+            'name': data['name'],
+            'url': data['alternate_url'],
+            'description': data.get('snippet').get('responsibility'),
+            'salary': data['salary'],
+            'date_published': self.get_formatted_date_hh(data['published_at']),
+            'area': data['area']['name']
         }
         return info
 
@@ -147,13 +147,13 @@ class SuperJob(Engine):
                   'to': data['payment_to'],
                   'currency': data['currency']}
         info = {
-            'Сайт': 'SuperJob',
-            'Название профессии': data['profession'],
-            'Url вакансии': data['link'],
-            'Требования': data.get('client').get('description'),
-            'Зарплата': salary,
-            'Дата публикации': self.get_formatted_date_sj(str(data['date_published'])),
-            'Место работы': data['town']['title']
+            'source': 'SuperJob',
+            'name': data['profession'],
+            'url': data['link'],
+            'description': data.get('client').get('description'),
+            'salary': salary,
+            'date_published': self.get_formatted_date_sj(str(data['date_published'])),
+            'area': data['town']['title']
         }
         return info
 
@@ -177,10 +177,11 @@ class SuperJob(Engine):
         return vacancy_list_rus
 
 
-#hh = HH('Python')
+hh = HH('Python')
 #data,info = hh.get_request()
+#print(hh.get_request())
 #exit(info)
-#print(hh.get_vacancies_list()[0])
+print(hh.get_vacancies_list())
 
 #sj = SuperJob('Python')
 #print(sj.get_vacancies_list()[0])

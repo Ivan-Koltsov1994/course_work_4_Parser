@@ -44,28 +44,27 @@ def test__repr__sj_vacancy(sj_list):
     sj = SJVacancy(sj_list)
     assert sj.__repr__() == 'SuperJob: Специалист службы поддержки с техническими знаниями, зарплата: Зарплата по вакансии Специалист службы поддержки с техническими знаниями от 15000 до 39000 руб/мес'
 
-def test_get_salary(vacancies):
+def test_get_salary(vacancies1,vacancies2,vacancies3):
     """Тестируем метод get_salary класса Vacancy"""
-    hh1 = HHVacancy(vacancies[0])
-    hh2 = HHVacancy(vacancies[1])
-    hh3 = HHVacancy(vacancies[2])
-    hh4 =HHVacancy({'Сайт': 'HeadHunter', 'Название профессии': 'Python разработчик middle+/senior', 'Url вакансии': 'https://hh.ru/vacancy/78637516', 'Требования': 'Разрабатывать сложный функционал, поддерживать и оптимизировать старый. Управлять командой разработки и самостоятельно распределять задачи внутри команды. Проводить CodeReview.', 'Зарплата': {'from': 0, 'to': None, 'currency': 'RUR', 'gross': True}, 'Дата публикации': '28.03.2023 16:43:05', 'Место работы': 'Санкт-Петербург'})
+    hh1 = HHVacancy(vacancies1)
+    hh2 = HHVacancy(vacancies2)
+    hh3 = HHVacancy(vacancies3)
 
-    assert hh1.get_salary() == 'Зарплата по вакансии Разработчик Python (Middle, Senior) не указана'
-    assert hh2.get_salary() == 'Зарплата по вакансии Программист Python (Junior) от 30000 руб/мес'
-    assert hh3.get_salary() == 'Зарплата по вакансии Middle Automation Game QA Engineer (Python 3)до 100000 руб/мес'
-    assert hh4.get_salary() == 'Зарплата по вакансии Python разработчик middle+/senior не указана'
+    assert hh1.get_salary() == 'Зарплата по вакансии Python BackEnd разработчик не указана'
+    assert hh2.get_salary() == 'Зарплата по вакансии Python разработчик от 25000 руб/мес'
+    assert hh3.get_salary() == 'Зарплата по вакансии Ведущий Python разработчик (удаленно)до 8000 руб/мес'
 
-def test_gt(vacancies):
+
+def test_gt(vacancies1,vacancies2):
     """Тестируем метод __gt__ класса Vacancy"""
 
-    hh1 = HHVacancy(vacancies[0])
-    hh2 = HHVacancy(vacancies[1])
-    assert hh1.__gt__(hh2) is False
+    hh1 = HHVacancy(vacancies1)
+    hh2 = HHVacancy(vacancies2)
+    assert hh1.__gt__(hh2) is True
 
-def test_lt(vacancies):
+def test_lt(vacancies1,vacancies2):
     """Тестируем метод __lt__ класса Vacancy"""
-    hh1 = HHVacancy(vacancies[0])
-    hh2 = HHVacancy(vacancies[1])
-    assert hh1.__lt__(hh2) is True
+    hh1 = HHVacancy(vacancies1)
+    hh2 = HHVacancy(vacancies2)
+    assert hh1.__lt__(hh2) is False
 
