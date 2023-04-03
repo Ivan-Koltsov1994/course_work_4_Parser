@@ -10,6 +10,12 @@ class Connector:
         self.__data_file = file_path # путь к файлу
         self.__connect() # при инициализации записываем или создаем новый файл файлу
 
+    def __str__(self):
+        return f'Коннектор работает с файлом {self.__data_file}'
+
+    def __repr__(self):
+        return f'Коннектор работает с файлом {self.__data_file}'
+
     @property
     def data_file(self) -> str:
         """Делаем путь к файлу методом"""
