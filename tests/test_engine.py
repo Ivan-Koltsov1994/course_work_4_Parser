@@ -1,15 +1,5 @@
-from project_classes.engine import HH, SuperJob, Engine
-import pytest
+from project_classes.engine import HH, SuperJob
 
-@pytest.fixture()
-def hh():
-    hh = HH('Python')
-    return hh
-
-@pytest.fixture()
-def sj():
-    sj = SuperJob('Python')
-    return sj
 
 def test_hh_str(hh):
     """Тестируем метод __str__класса HH"""
