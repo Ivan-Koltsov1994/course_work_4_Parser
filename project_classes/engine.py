@@ -133,7 +133,7 @@ class SuperJob(Engine):
         try:
             response = requests.get(url=self.URL, headers=self.HEADERS, params=self.par)
             if response.status_code == 200:
-                return response.json(), 'INFO:Данные получены успешно \n'
+                return response.json(), f'INFO:Данные получены успешно \n'
             return None, f'ERROR:status_code:{response.status_code} \n'
 
         except requests.exceptions.JSONDecodeError:
@@ -188,8 +188,8 @@ class SuperJob(Engine):
 
 
 
-sj = SuperJob('Python')
-print(sj.get_vacancies_list()[0])
+#sj = SuperJob('Python')
+#print(sj.get_vacancies_list()[0])
 #data_sj= sj.get_vacancies_list()
 #b = Engine.get_connector("../tests/test_data/vacancies_list_sj.json")
 #b.insert(data_sj)
