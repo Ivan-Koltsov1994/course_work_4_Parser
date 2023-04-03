@@ -7,8 +7,8 @@ class Connector:
     __data_file = None
 
     def __init__(self, file_path: str):
-        self.__data_file = file_path # путь к файлу
-        self.__connect() # при инициализации записываем или создаем новый файл файлу
+        self.__data_file = file_path  # путь к файлу
+        self.__connect()  # при инициализации записываем или создаем новый файл файлу
 
     def __str__(self):
         return f'Коннектор работает с файлом {self.__data_file}'
@@ -30,19 +30,8 @@ class Connector:
     def __connect(self) -> None:
         """Метод открывает перезаписывает данные файла или создает новый файл"""
 
-        try:
-            with open(self.data_file, 'r') as f:
-                data = json.load(f)
-
-        except FileNotFoundError:
-            print("Файл не обнаружен - создаем новый файл")
-
-            with open(self.data_file, 'w') as f:
-                json.dump([], f)
-            data = []
-
-        if not isinstance(data, list):
-            raise TypeError("Файл должен содержать список")
+        with open(self.__data_file, 'w') as file:
+            json.dump([], file)
 
     def insert(self, data: list) -> None:
         """Метод записи данных в файл с сохранением исходных данных"""
@@ -56,7 +45,7 @@ class Connector:
     def select(self, query: dict) -> list:
         """Метод выбирает данные из файла по значениям словаря"""
 
-        sorted_data = []# создаем список для отсортированных данных
+        sorted_data = []  # создаем список для отсортированных данных
 
         with open(self.__data_file) as f:
             data = json.load(f)
@@ -69,7 +58,7 @@ class Connector:
             if all(item.get(key) == value for key, value in query.items()):
                 sorted_data.append(item)
 
-        if sorted_data is not  None:
+        if sorted_data is not None:
             print("Данных успешно найдены..")
 
         return sorted_data
@@ -92,11 +81,11 @@ class Connector:
         with open(self.__data_file, 'w') as file:
             json.dump(result, file)
 
-#df = Connector('file.json')
+# df = Connector('file.json')
 
-#data_for_file = [{'id': 1, 'title': 'tet'}]
-#df.insert(data_for_file)
+# data_for_file = [{'id': 1, 'title': 'tet'}]
+# df.insert(data_for_file)
 
-#d = {'title': 'tet'}
-#data_from_file = df.select(d)
-#print(data_from_file)
+# d = {'title': 'tet'}
+# data_from_file = df.select(d)
+# print(data_from_file)

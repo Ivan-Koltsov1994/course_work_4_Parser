@@ -31,6 +31,7 @@ class HH(Engine):
         self.par = {'text': f'{self.job}', 'page': 0, 'per_page': 100}  # Инициализируем данные по
         # названию профессии, id региона в HH, выводим количество страниц
 
+
     def __str__(self):
         return f'{self.job}'
 
@@ -187,8 +188,8 @@ class SuperJob(Engine):
 
 
 
-#sj = SuperJob('Python')
-#print(sj.get_vacancies_list()[0])
+sj = SuperJob('Python')
+print(sj.get_vacancies_list()[0])
 #data_sj= sj.get_vacancies_list()
 #b = Engine.get_connector("../tests/test_data/vacancies_list_sj.json")
 #b.insert(data_sj)

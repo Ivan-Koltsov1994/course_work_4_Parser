@@ -1,5 +1,5 @@
 class Vacancy:
-    __slots__ = ('website','name', 'url', 'description', 'salary', 'date_published','place_work')
+    __slots__ = ('website', 'name', 'url', 'description', 'salary', 'date_published', 'place_work')
 
     def __init__(self, data: dict):
         self.website = data['source']
@@ -40,6 +40,7 @@ class Vacancy:
         else:
             return f'Зарплата по вакансии {self.name} не указана'
 
+
 class HHVacancy(Vacancy):
     """ Класс наследуется от класса Vacancy определяет вакансии на HH"""
 
@@ -49,6 +50,7 @@ class HHVacancy(Vacancy):
     def __repr__(self):
         return f'{self.website}: {self.name}, зарплата: {self.get_salary()}'
 
+
 class SJVacancy(Vacancy):
     """ Класс наследуется от класса Vacancy определяет вакансии на SJ"""
 
@@ -57,5 +59,3 @@ class SJVacancy(Vacancy):
 
     def __repr__(self):
         return f'{self.website}: {self.name}, зарплата: {self.get_salary()}'
-
-

@@ -39,8 +39,9 @@ def get_top_vacancies(data, top_work_count) -> list:
 
 
 def check_vacancy(hh: HH, sj: SuperJob) -> bool:
-    """Функция проверяет существует ли вакансия"""
+    """Функция проверяет существование вакансии"""
     return hh.get_request()[0] != [] or sj.get_request()[0] != []
+
 
 def get_top_vacancies_by_date(data: list, count: int) -> list:
     """Функция сортирует вакансии по дате публикации"""

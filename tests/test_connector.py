@@ -1,4 +1,9 @@
 from project_classes.connector import Connector
+import pytest,os
+
+@pytest.fixture
+def path():
+    return os.path.join('file_connector.json')
 
 def test_str_connector(path):
     """Тестируем метод str"""
