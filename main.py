@@ -75,14 +75,15 @@ def main():
         print('Вам нужны еще варианты выбора вакансий? Yes/None')
 
         # Предлагаем дополнительное пользование парсером
-        keyword_user = input().upper()
+        keyword_user = input().lower()
 
-        if keyword_user == 'Yes':
+        if keyword_user == 'yes' or keyword_user == 'да':
             continue
         else:
             print('Спасибо,что пользуетесь нашим приложением!')
             break
 
+    exit()
 
 if __name__ == '__main__':
     main()

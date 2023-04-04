@@ -58,4 +58,3 @@ def get_info(data: list | str):
             count += 1
     else:
         print(data)
-
