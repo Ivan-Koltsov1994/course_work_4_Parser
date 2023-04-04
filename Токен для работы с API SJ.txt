@@ -1,0 +1,12 @@
+Параметры приложения (редактировать)
+ID	2249
+Название приложения	Parser
+Описание приложения	Скачивает данные о вакансии
+Сайт приложения	https://github.com/Ivan-Koltsov1994/course_work_4_Parser
+Callback URL	
+Контактное лицо	Иван
+Эл. адрес	ivan.koltsov.1994@gmail.com
+Сайт	
+Параметры доступа
+ID	2249
+Secret key	v3.r.137452542.ff28ecd8c9f1fb8e8a8afeb979b1af928640303d.cad47df89de1b6319053ae0bdbf900be01aea0f2
