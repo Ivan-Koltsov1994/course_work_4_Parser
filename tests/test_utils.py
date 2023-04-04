@@ -1,4 +1,4 @@
-from project_utils.utils import get_vacancies,get_top_vacancies,get_top_vacancies_by_date, check_vacancy
+from project_utils.utils import get_vacancies,get_top_vacancies,get_top_vacancies_by_date, check_vacancy,get_info
 
 
 def test_get_vacancies(vacancies,vacancies_hh,vacancies_sj):

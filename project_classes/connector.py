@@ -47,7 +47,7 @@ class Connector:
 
         sorted_data = []  # создаем список для отсортированных данных
 
-        with open(self.__data_file) as f:
+        with open(self.__data_file, 'r', encoding='UTF-8') as f:
             data = json.load(f)
 
         if not query:

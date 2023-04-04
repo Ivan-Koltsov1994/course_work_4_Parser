@@ -48,3 +48,14 @@ def get_top_vacancies_by_date(data: list, count: int) -> list:
 
     vacancies = get_vacancies(data)
     return sorted(vacancies, reverse=True)[:count]
+
+def get_info(data: list | str):
+    """Вывод построчно с нумерацией, если список, либо вывод строки"""
+    if isinstance(data, list):
+        count = 1
+        for item in data:
+            print(f'{count} - {item}')
+            count += 1
+    else:
+        print(data)
+

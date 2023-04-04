@@ -55,7 +55,7 @@ class SJVacancy(Vacancy):
     """ Класс наследуется от класса Vacancy определяет вакансии на SJ"""
 
     def __str__(self):
-        return f'{self.website}: {self.name}, зарплата: {self.get_salary()}'
+        return f'{self.website}: {self.name}, зарплата: {self.get_salary()}, дата публикации: {self.date_published}'
 
     def __repr__(self):
-        return f'{self.website}: {self.name}, зарплата: {self.get_salary()}'
+        return f'{self.website}: {self.name}, зарплата: {self.get_salary()}, дата публикации: {self.date_published}'
